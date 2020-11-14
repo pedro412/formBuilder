@@ -1,3 +1,5 @@
+import './styles.css';
+
 const array = [
   {
     label: 'Name',
@@ -6,7 +8,7 @@ const array = [
       type: 'text',
       name: 'name',
       placeholder: 'Name...',
-      value: 'Lukasz',
+      value: 'asdf',
       disabled: true,
     },
   },
@@ -45,6 +47,7 @@ const formBuilder = (array) => {
 
   array.forEach((element) => {
     const div = document.createElement('div');
+    div.classList.add('form-control');
     const label = createLabel(element.label, element.attributes.id);
     const input = createInput(element);
 
