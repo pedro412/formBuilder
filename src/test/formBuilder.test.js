@@ -12,7 +12,7 @@ describe('formBuilder', () => {
     formBuilder(array);
   });
 
-  it('should render two form-controls', () => {
+  it('should render two divs with class form-control', () => {
     const divs = document.getElementsByClassName('form-control');
     expect(divs).to.be.length(2);
   });

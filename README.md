@@ -1,3 +1,3 @@
-## Form buider exersice for codility
+## Form builder exercise for codility
 
 DOM Testing and manipulation with JS
