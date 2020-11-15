@@ -1,4 +1,4 @@
-import './styles.css';
+// import './styles.css';
 
 const array = [
   {
@@ -8,7 +8,7 @@ const array = [
       type: 'text',
       name: 'name',
       placeholder: 'Name...',
-      value: 'asdf',
+      value: 'Jhon',
       disabled: true,
     },
   },
@@ -57,4 +57,7 @@ const formBuilder = (array) => {
   });
 };
 
-formBuilder(array);
+module.exports = {
+  array,
+  formBuilder,
+};
