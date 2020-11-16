@@ -1,5 +1,3 @@
-// import './styles.css';
-
 const array = [
   {
     label: 'Name',
@@ -7,9 +5,9 @@ const array = [
       id: 'name',
       type: 'text',
       name: 'name',
-      placeholder: 'Name...',
+      placeholder: 'Your name',
       value: 'Jhon',
-      disabled: true,
+      disabled: 'true',
     },
   },
   {
@@ -18,7 +16,15 @@ const array = [
       id: 'age',
       type: 'number',
       name: 'age',
-      placeholder: '18',
+      placeholder: 'Your age',
+    },
+  },
+  {
+    label: 'Send email',
+    attributes: {
+      id: 'sendEmail',
+      type: 'checkbox',
+      name: 'sendEmail',
     },
   },
 ];
@@ -42,9 +48,9 @@ const createInput = (element) => {
   return input;
 };
 
-const formBuilder = (array) => {
-  const body = document.querySelector('body');
+const body = document.querySelector('body');
 
+const formBuilder = (array) => {
   array.forEach((element) => {
     const div = document.createElement('div');
     div.classList.add('form-control');
@@ -56,6 +62,8 @@ const formBuilder = (array) => {
     body.append(div);
   });
 };
+
+// formBuilder(array);
 
 module.exports = {
   array,
