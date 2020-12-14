@@ -6,8 +6,8 @@ const array = [
       type: 'text',
       name: 'name',
       placeholder: 'Your name',
-      value: 'Jhon',
-      disabled: 'true',
+      value: '',
+      required: 'true',
     },
   },
   {
@@ -16,7 +16,9 @@ const array = [
       id: 'age',
       type: 'number',
       name: 'age',
+      value: '',
       placeholder: 'Your age',
+      required: 'false',
     },
   },
   {
@@ -35,35 +37,44 @@ const setAttributes = (nodeElement, attributesObj) => {
   });
 };
 
-const createLabel = (text, htmlFor) => {
-  const label = document.createElement('label');
-  label.innerText = text;
-  label.setAttribute('for', htmlFor);
-  return label;
+const createHTMLElement = (type, attributes) => {
+  const element = document.createElement(type);
+  setAttributes(element, attributes);
+  return element;
 };
 
-const createInput = (element) => {
-  const input = document.createElement('input');
-  setAttributes(input, element.attributes);
-  return input;
+const handleSubmit = (event) => {
+  event.preventDefault();
+  event.target.reset();
 };
 
-const body = document.querySelector('body');
+const formBuilder = (array, body) => {
+  const form = createHTMLElement('form', { id: 'form' });
 
-const formBuilder = (array) => {
   array.forEach((element) => {
+    const { attributes, label } = element;
+
     const div = document.createElement('div');
     div.classList.add('form-control');
-    const label = createLabel(element.label, element.attributes.id);
-    const input = createInput(element);
 
-    div.append(label);
+    const inputLabel = createHTMLElement('label', { for: attributes.id });
+    inputLabel.innerText = label;
+
+    const input = createHTMLElement('input', attributes);
+
+    div.append(inputLabel);
     div.append(input);
-    body.append(div);
+    form.append(div);
   });
-};
 
-// formBuilder(array);
+  form.addEventListener('submit', handleSubmit);
+
+  const button = createHTMLElement('button', { id: 'button' });
+  button.innerText = 'Submit';
+  form.append(button);
+
+  body.append(form);
+};
 
 module.exports = {
   array,

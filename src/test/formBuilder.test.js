@@ -8,8 +8,11 @@ global.window = window;
 const { array, formBuilder } = require('../formBuilder');
 
 describe('formBuilder', () => {
+  let body;
+
   before(() => {
-    formBuilder(array);
+    body = document.querySelector('body');
+    formBuilder(array, body);
   });
 
   it('should render all inputs from the array', () => {
@@ -38,5 +41,30 @@ describe('formBuilder', () => {
     label.click();
 
     expect(checkbox.checked).to.equal(true);
+  });
+
+  describe('form', () => {
+    let submitButton;
+
+    beforeEach(() => {
+      submitButton = document.querySelector('button');
+    });
+
+    it('should contain a submit button with text Submit and id button', () => {
+      expect(submitButton.innerText).to.be.equal('Submit');
+    });
+
+    it('should reset all inputs if we call the submit function', () => {
+      const nameInput = document.getElementById('name');
+      const ageInput = document.getElementById('age');
+
+      nameInput.value = 'Name';
+      ageInput.value = 21;
+
+      submitButton.click();
+
+      expect(nameInput.value).to.be.equal('');
+      expect(ageInput.value).to.be.equal('');
+    });
   });
 });
